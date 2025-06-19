@@ -1,4 +1,5 @@
 # 🚀 How to Run This Project (React + FastAPI)
+test
 
 Follow these steps in your terminal to start both the frontend (React) and backend (FastAPI) apps.
 
