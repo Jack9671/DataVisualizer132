@@ -83,6 +83,8 @@ async def get_bar_chart_for_number_of_patents_with_respect_to_country(request: R
     df_for_bar_chart = df.groupby(groupby_var)[*columns_to_count].count().reset_index()
     #rename the columns
     df_for_bar_chart.rename(columns={'Technology domain': 'number of patents'}, inplace=True)
+    # sort the DataFrame by the number of patents in descending order
+    df_for_bar_chart.sort_values(by='number of patents', ascending=False, inplace=True)
     #bar chart
     fig = px.bar(df_for_bar_chart, x='Country', y='number of patents', title='Total number of patents from the selected years and technology domains<br>with respect to country', labels={'Country': 'Country', 'number of patents': 'Number of Patents'},width= 700)
     return JSONResponse(content=json.loads(fig.to_json()))
@@ -101,6 +103,8 @@ async def get_bar_chart_for_number_of_patents_with_respect_to_technology_domain(
     df_for_bar_chart = df.groupby(groupby_var)[*columns_to_count].count().reset_index()
     # Rename the columns
     df_for_bar_chart.rename(columns={'Country': 'number of patents'}, inplace=True)
+    # Sort the DataFrame by the number of patents in descending order
+    df_for_bar_chart.sort_values(by='number of patents', ascending=False, inplace=True)
     #bar chart
     fig = px.bar(df_for_bar_chart, x='Technology domain', y='number of patents', title='Total number of patents from the selected years and countries<br>with respect to technology domain', labels={'Technology domain': 'Technology Domain', 'number of patents': 'Number of Patents'},width= 700)
     return JSONResponse(content=json.loads(fig.to_json()))
