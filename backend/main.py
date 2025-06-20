@@ -29,6 +29,8 @@ DF.rename(columns={'TIME_PERIOD': 'Year'}, inplace=True)
 DF.rename(columns={'REF_AREA': 'Country'}, inplace=True)
 # rename 'TECH' to 'Technology domain'
 DF.rename(columns={'TECH': 'Technology domain'}, inplace=True)
+# Remove rows with any null values
+DF = DF.dropna()
 
 #check if the DataFrame is loaded correctly
 if DF.empty:
